@@ -1,6 +1,10 @@
 package com.example.project3_dynamic_viewer_app
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -19,14 +23,38 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        val cake_btn = findViewById<Button>(R.id.button_cake)
+        cake_btn.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, act_cake::class.java)
+            startActivity(intent)
+        })
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        val coffee_btn = findViewById<Button>(R.id.button_coffee)
+        coffee_btn.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, act_coffee::class.java)
+            startActivity(intent)
+        })
+
+        val cookie_btn = findViewById<Button>(R.id.button_cookie)
+        cookie_btn.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, act_cookie::class.java)
+            startActivity(intent)
+        })
     }
+    fun goToCakeActivity(view: View?) {
+        val intent = Intent(this@MainActivity, act_cake::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
+    fun goToCoffeeActivity(view: View?) {
+        val intent = Intent(this@MainActivity, act_coffee::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
+    fun goToCookieActivity(view: View?) {
+        val intent = Intent(this@MainActivity, act_cookie::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
+
 }
